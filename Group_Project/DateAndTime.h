@@ -59,7 +59,39 @@ public:
 
 
 private:
-    void find_lastday() {
+    void find_lastday() {	
+	int d = Day;
+	int m = Month;
+	int y = Year;
+	if (Month == 1 || Month == 3 || Month ==5 || Month == 7 || Month == 8 || Month == 10 || Month == 12) {
+		d = 31;
+	}// check month ,if month == 1,3,5,7,8,10,12, then last day is 31
+        
+	else if (Month == 4 || Month == 6 || Month == 9 || Month == 11) {
+		d = 30;
+	}// check month ,if month == 4,6,9,11, then last day is 30
+        
+     // code below is when month = 2, need to check the year is leap year or not. 
+	else if (Month == 2) {
+		if (Year % 400 == 0 && Year % 100 == 0 && Year % 4 == 0) {
+			d = 29;
+		}
+		else if (Year % 4 == 0 && Year % 100 != 0) {
+			d = 29;
+		}
+		else if (Year % 4 != 0) {
+			d = 28;
+		}
+		else if (Year % 400 != 0 && Year % 100 == 0 && Year % 4 == 0) {
+			d = 28;
+		}
+        // above this is checking leap year
+		else {
+			d = 0;
+		}// any incorrect month will show last day =0
+	}
+	return d;
+}
 
 
     }        
